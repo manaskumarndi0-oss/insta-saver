@@ -8,6 +8,7 @@ app = Flask(__name__)
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 DOWNLOAD_DIR = os.path.join(BASE, 'downloads')
+COOKIE_FILE = os.path.join(BASE, 'ig_cookies.txt')
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
 # Cleanup old files (older than 1 hour)
@@ -49,11 +50,14 @@ def download_reel():
     output_template = os.path.join(DOWNLOAD_DIR, f'ig_{uid}.%(ext)s')
     
     # yt-dlp command
-    cmd = [
-        'yt-dlp',
+    cmd = ['yt-dlp']
+    if os.path.exists(COOKIE_FILE):
+        cmd += ['--cookies', COOKIE_FILE]
+    cmd += [
         '--no-playlist',
         '--no-warnings',
         '--no-check-certificate',
+        '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         '-f', 'best',
         '-o', output_template,
         url
