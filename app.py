@@ -204,3 +204,22 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     print(f"\n🚀 Insta-Saver v2 running on port {port}\n")
     app.run(host='0.0.0.0', port=port, debug=False)
+
+# ============ PWA ROUTES ============
+@app.route('/manifest.json')
+def manifest():
+    return send_from_directory(os.path.join(BASE, 'static'), 'manifest.json')
+
+@app.route('/sw.js')
+def service_worker():
+    response = send_from_directory(os.path.join(BASE, 'static'), 'sw.js')
+    response.headers['Service-Worker-Allowed'] = '/'
+    return response
+
+@app.route('/icon-192.png')
+def icon192():
+    return send_from_directory(os.path.join(BASE, 'static'), 'icon-192.png')
+
+@app.route('/icon-512.png')
+def icon512():
+    return send_from_directory(os.path.join(BASE, 'static'), 'icon-512.png')

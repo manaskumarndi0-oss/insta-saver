@@ -114,6 +114,12 @@ body{background:radial-gradient(circle at 20% 10%,rgba(193,53,132,.15),transpare
   .modes{grid-template-columns:repeat(3,1fr)}
 }
 </style>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Insta Saver">
+<meta name="theme-color" content="#0a0e1a">
 </head>
 <body>
 
@@ -469,6 +475,12 @@ urlInput.addEventListener('keypress', (e) => {
 
 // ============ BOOT ============
 renderHistory();
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(e => console.log(e));
+  });
+}
 </script>
 </body>
 </html>
