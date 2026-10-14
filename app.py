@@ -205,21 +205,39 @@ if __name__ == '__main__':
     print(f"\n🚀 Insta-Saver v2 running on port {port}\n")
     app.run(host='0.0.0.0', port=port, debug=False)
 
+
 # ============ PWA ROUTES ============
+from flask import send_from_directory
+
 @app.route('/manifest.json')
 def manifest():
-    return send_from_directory(os.path.join(BASE, 'static'), 'manifest.json')
+    response = send_from_directory(os.path.join(BASE, 'static'), 'manifest.json')
+    response.headers['Content-Type'] = 'application/manifest+json'
+    response.headers['Cache-Control'] = 'no-cache'
+    return response
 
 @app.route('/sw.js')
 def service_worker():
     response = send_from_directory(os.path.join(BASE, 'static'), 'sw.js')
     response.headers['Service-Worker-Allowed'] = '/'
+    response.headers['Content-Type'] = 'application/javascript'
     return response
 
 @app.route('/icon-192.png')
 def icon192():
-    return send_from_directory(os.path.join(BASE, 'static'), 'icon-192.png')
+    response = send_from_directory(os.path.join(BASE, 'static'), 'icon-192.png')
+    response.headers['Content-Type'] = 'image/png'
+    response.headers['Cache-Control'] = 'public, max-age=31536000'
+    return response
 
 @app.route('/icon-512.png')
 def icon512():
-    return send_from_directory(os.path.join(BASE, 'static'), 'icon-512.png')
+    response = send_from_directory(os.path.join(BASE, 'static'), 'icon-512.png')
+    response.headers['Content-Type'] = 'image/png'
+    response.headers['Cache-Control'] = 'public, max-age=31536000'
+    return response
+
+# Also serve from /static/ for fallback
+@app.route('/static/<path:filename>')
+def static_files(filename):
+    return send_from_directory(os.path.join(BASE, 'static'), filename)
