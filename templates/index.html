@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0a0e1a">
+<title>Insta Saver · Reels Downloader</title>
+<meta name="description" content="Free Instagram Reels, Video & Photo downloader. Fast, free, no login needed.">
+<link rel="icon" href="/static/icon.png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:radial-gradient(circle at 20% 10%,rgba(193,53,132,.15),transparent 45%),radial-gradient(circle at 80% 90%,rgba(131,58,180,.15),transparent 45%),radial-gradient(circle at 50% 50%,rgba(253,29,29,.08),transparent 50%),linear-gradient(180deg,#0a0e1a,#0f1422);color:#e8eaf2;min-height:100vh;padding:20px;-webkit-font-smoothing:antialiased}
+
+.container{max-width:520px;margin:0 auto}
+
+/* HEADER */
+.logo{text-align:center;margin-bottom:32px}
+.logo-mark{display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;border-radius:20px;background:linear-gradient(135deg,#fd1d1d,#833ab4);font-size:2rem;box-shadow:0 12px 32px rgba(253,29,29,.4);margin-bottom:16px}
+.logo h1{font-size:1.6rem;font-weight:900;letter-spacing:-.03em;background:linear-gradient(135deg,#fff,#f87171 60%,#c13584);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;line-height:1.15}
+.logo p{font-size:.85rem;color:rgba(255,255,255,.5);font-weight:500;line-height:1.5}
+
+/* FORM */
+.form-card{background:linear-gradient(180deg,rgba(24,30,52,.85),rgba(15,20,35,.85));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px 22px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 20px 50px -20px rgba(0,0,0,.7);margin-bottom:20px}
+
+.input-wrap{position:relative;margin-bottom:14px}
+.input-wrap input{width:100%;padding:16px 18px;background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.08);border-radius:14px;color:#fff;font-family:inherit;font-size:.92rem;outline:none;transition:.2s}
+.input-wrap input:focus{border-color:rgba(193,53,132,.6);background:rgba(255,255,255,.05)}
+.input-wrap input::placeholder{color:rgba(255,255,255,.3)}
+
+.btn{width:100%;padding:16px 20px;border:none;border-radius:14px;font-family:inherit;font-size:1rem;font-weight:800;cursor:pointer;transition:.2s;letter-spacing:.02em;display:flex;align-items:center;justify-content:center;gap:10px}
+.btn-primary{background:linear-gradient(135deg,#fd1d1d,#833ab4);color:#fff;box-shadow:0 8px 24px rgba(193,53,132,.4)}
+.btn-primary:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 32px rgba(193,53,132,.5)}
+.btn-primary:active{transform:scale(.98)}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+/* STATUS */
+.status{padding:14px 16px;border-radius:14px;font-size:.85rem;margin-top:14px;display:none;line-height:1.5;font-weight:600}
+.status.show{display:block;animation:fadeIn .3s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.status.info{background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.3);color:#93c5fd}
+.status.error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#f87171}
+.status.success{background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);color:#4ade80}
+
+/* RESULT */
+.result-card{background:linear-gradient(180deg,rgba(24,30,52,.85),rgba(15,20,35,.85));border:1px solid rgba(74,222,128,.3);border-radius:20px;padding:24px 22px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 20px 50px -20px rgba(0,0,0,.7);margin-bottom:20px;display:none;text-align:center}
+.result-card.show{display:block;animation:fadeIn .3s}
+
+.result-icon{font-size:3rem;margin-bottom:12px;display:block}
+.result-title{font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:6px}
+.result-meta{font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:20px;font-weight:600}
+
+.dl-btn{width:100%;padding:16px;background:linear-gradient(135deg,#4ade80,#22c55e);color:#0a0e1a;border:none;border-radius:14px;font-family:inherit;font-size:1rem;font-weight:900;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 8px 24px rgba(74,222,128,.4);transition:.2s;letter-spacing:.02em}
+.dl-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(74,222,128,.5)}
+.dl-btn:active{transform:scale(.98)}
+
+.try-again{margin-top:12px;background:transparent;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.1);padding:12px;width:100%;border-radius:12px;font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer}
+.try-again:hover{color:#fff;border-color:rgba(255,255,255,.2)}
+
+/* INFO */
+.info{background:rgba(20,26,44,.5);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:18px;margin-bottom:20px}
+.info h3{font-size:.7rem;color:rgba(255,255,255,.4);font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
+.info ul{list-style:none}
+.info li{padding:8px 0;font-size:.83rem;color:rgba(255,255,255,.65);display:flex;gap:10px;line-height:1.5}
+.info li::before{content:'✓';color:#4ade80;font-weight:900;flex-shrink:0}
+
+/* SPINNER */
+.spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* FOOTER */
+.footer{text-align:center;padding:20px;font-size:.7rem;color:rgba(255,255,255,.3);line-height:1.7}
+.footer b{color:rgba(255,255,255,.5)}
+
+@media(max-width:400px){
+  .logo h1{font-size:1.35rem}
+  .form-card{padding:20px 18px}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="logo">
+    <div class="logo-mark">📥</div>
+    <h1>Insta Saver</h1>
+    <p>Instagram Reels, Video & Photo downloader — Free, Fast, No Login</p>
+  </div>
+
+  <div class="form-card">
+    <div class="input-wrap">
+      <input type="text" id="urlInput" placeholder="Instagram URL paste karo..." autocomplete="off" autocorrect="off">
+    </div>
+    <button class="btn btn-primary" id="downloadBtn" onclick="startDownload()">
+      📥 Download Karo
+    </button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="result-card" id="resultCard">
+    <span class="result-icon">✅</span>
+    <div class="result-title">Ready to Download!</div>
+    <div class="result-meta" id="resultMeta">Video ready hai</div>
+    <a class="dl-btn" id="downloadLink" href="#" download>
+      ⬇️ Save to Phone
+    </a>
+    <button class="try-again" onclick="resetForm()">🔄 Naya Download</button>
+  </div>
+
+  <div class="info">
+    <h3>How to use</h3>
+    <ul>
+      <li>Instagram app kholo → Reel/Post pe jao</li>
+      <li>Three dots (⋮) → "Copy Link" dabाओ</li>
+      <li>Yahan paste karke "Download" dabाओ</li>
+      <li>File save hogi → Gallery me dekho</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <b>Disclaimer:</b> Sirf publicly available content download karo.<br>
+    Copyright content download karna illegal ho sakta hai. Apni responsibility pe use karo.
+  </div>
+
+</div>
+
+<script>
+const urlInput = document.getElementById('urlInput');
+const downloadBtn = document.getElementById('downloadBtn');
+const status = document.getElementById('status');
+const resultCard = document.getElementById('resultCard');
+
+function showStatus(type, msg){
+  status.className = 'status show ' + type;
+  status.innerHTML = msg;
+}
+
+function hideStatus(){
+  status.className = 'status';
+}
+
+async function startDownload(){
+  const url = urlInput.value.trim();
+  
+  if(!url){
+    showStatus('error', '❌ Instagram URL daalo');
+    return;
+  }
+  
+  if(!url.includes('instagram.com') && !url.includes('instagr.am')){
+    showStatus('error', '❌ Valid Instagram URL nahi hai');
+    return;
+  }
+  
+  downloadBtn.disabled = true;
+  downloadBtn.innerHTML = '<div class="spinner"></div> Download ho raha...';
+  showStatus('info', '⏳ Video process ho rahi hai... (10-30 sec)');
+  resultCard.classList.remove('show');
+  
+  try {
+    const res = await fetch('/api/download', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({url})
+    });
+    
+    const data = await res.json();
+    
+    if(data.ok){
+      showStatus('success', '✅ Video ready! Download button dabाओ');
+      document.getElementById('resultMeta').textContent = 'Size: ' + data.size;
+      document.getElementById('downloadLink').href = data.file;
+      document.getElementById('downloadLink').setAttribute('download', data.filename);
+      resultCard.classList.add('show');
+      resultCard.scrollIntoView({behavior:'smooth', block:'center'});
+    } else {
+      showStatus('error', '❌ ' + (data.error || 'Download failed'));
+    }
+  } catch(e){
+    showStatus('error', '❌ Network error: ' + e.message);
+  }
+  
+  downloadBtn.disabled = false;
+  downloadBtn.innerHTML = '📥 Download Karo';
+}
+
+function resetForm(){
+  urlInput.value = '';
+  resultCard.classList.remove('show');
+  hideStatus();
+  urlInput.focus();
+}
+
+// Enter key support
+urlInput.addEventListener('keypress', (e) => {
+  if(e.key === 'Enter') startDownload();
+});
+</script>
+</body>
+</html>
