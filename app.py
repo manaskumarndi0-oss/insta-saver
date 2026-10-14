@@ -113,10 +113,6 @@ def health():
     return jsonify({'ok': True, 'status': 'running'})
 
 if __name__ == '__main__':
-    print("\n" + "="*55)
-    print("📥 Instagram Reels Downloader")
-    print("="*55)
-    print("📱 Chrome me kholo: http://localhost:5000")
-    print("⚠️  Server band: Ctrl+C")
-    print("="*55 + "\n")
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    import os
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
