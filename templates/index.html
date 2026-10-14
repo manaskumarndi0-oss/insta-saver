@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 <meta name="theme-color" content="#0a0e1a">
 <title>Insta Saver · Reels Downloader</title>
-<meta name="description" content="Free Instagram Reels, Video & Photo downloader. Fast, free, no login needed.">
-<link rel="icon" href="/static/icon.png">
+<meta name="description" content="Free Instagram Reels, Video, Audio & Photo downloader. Fast, free, no login.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-tap-highlight-color:transparent}
 body{background:radial-gradient(circle at 20% 10%,rgba(193,53,132,.15),transparent 45%),radial-gradient(circle at 80% 90%,rgba(131,58,180,.15),transparent 45%),radial-gradient(circle at 50% 50%,rgba(253,29,29,.08),transparent 50%),linear-gradient(180deg,#0a0e1a,#0f1422);color:#e8eaf2;min-height:100vh;padding:20px;-webkit-font-smoothing:antialiased}
@@ -14,27 +13,42 @@ body{background:radial-gradient(circle at 20% 10%,rgba(193,53,132,.15),transpare
 .container{max-width:520px;margin:0 auto}
 
 /* HEADER */
-.logo{text-align:center;margin-bottom:32px}
-.logo-mark{display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;border-radius:20px;background:linear-gradient(135deg,#fd1d1d,#833ab4);font-size:2rem;box-shadow:0 12px 32px rgba(253,29,29,.4);margin-bottom:16px}
-.logo h1{font-size:1.6rem;font-weight:900;letter-spacing:-.03em;background:linear-gradient(135deg,#fff,#f87171 60%,#c13584);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;line-height:1.15}
-.logo p{font-size:.85rem;color:rgba(255,255,255,.5);font-weight:500;line-height:1.5}
+.logo{text-align:center;margin-bottom:24px}
+.logo-mark{display:inline-flex;align-items:center;justify-content:center;width:68px;height:68px;border-radius:20px;background:linear-gradient(135deg,#fd1d1d,#833ab4);font-size:1.9rem;box-shadow:0 12px 32px rgba(253,29,29,.4);margin-bottom:14px}
+.logo h1{font-size:1.5rem;font-weight:900;letter-spacing:-.03em;background:linear-gradient(135deg,#fff,#f87171 60%,#c13584);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;line-height:1.15}
+.logo p{font-size:.82rem;color:rgba(255,255,255,.5);font-weight:500;line-height:1.5}
+
+/* TABS */
+.tabs{display:flex;gap:6px;background:rgba(20,26,44,.6);padding:6px;border-radius:14px;margin-bottom:14px;border:1px solid rgba(255,255,255,.06)}
+.tab{flex:1;padding:11px;border-radius:10px;background:transparent;border:none;color:rgba(255,255,255,.5);font-family:inherit;font-size:.82rem;font-weight:700;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:5px}
+.tab.active{background:linear-gradient(135deg,#fd1d1d,#833ab4);color:#fff;box-shadow:0 4px 12px rgba(193,53,132,.4)}
 
 /* FORM */
-.form-card{background:linear-gradient(180deg,rgba(24,30,52,.85),rgba(15,20,35,.85));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px 22px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 20px 50px -20px rgba(0,0,0,.7);margin-bottom:20px}
+.form-card{background:linear-gradient(180deg,rgba(24,30,52,.85),rgba(15,20,35,.85));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:22px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 20px 50px -20px rgba(0,0,0,.7);margin-bottom:16px}
 
-.input-wrap{position:relative;margin-bottom:14px}
-.input-wrap input{width:100%;padding:16px 18px;background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.08);border-radius:14px;color:#fff;font-family:inherit;font-size:.92rem;outline:none;transition:.2s}
-.input-wrap input:focus{border-color:rgba(193,53,132,.6);background:rgba(255,255,255,.05)}
-.input-wrap input::placeholder{color:rgba(255,255,255,.3)}
+.input-wrap{position:relative;margin-bottom:12px}
+.input-wrap input,.input-wrap textarea{width:100%;padding:15px 46px 15px 16px;background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.08);border-radius:14px;color:#fff;font-family:inherit;font-size:.9rem;outline:none;transition:.2s;resize:vertical}
+.input-wrap input:focus,.input-wrap textarea:focus{border-color:rgba(193,53,132,.6);background:rgba(255,255,255,.05)}
+.input-wrap input::placeholder,.input-wrap textarea::placeholder{color:rgba(255,255,255,.3)}
+.paste-btn{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:9px;background:rgba(255,255,255,.06);border:none;color:#c13584;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
+.paste-btn:hover{background:rgba(193,53,132,.2)}
 
-.btn{width:100%;padding:16px 20px;border:none;border-radius:14px;font-family:inherit;font-size:1rem;font-weight:800;cursor:pointer;transition:.2s;letter-spacing:.02em;display:flex;align-items:center;justify-content:center;gap:10px}
+/* MODE OPTIONS */
+.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
+.mode{padding:11px 6px;border-radius:11px;background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.08);color:rgba(255,255,255,.6);font-family:inherit;font-size:.75rem;font-weight:700;cursor:pointer;transition:.2s;display:flex;flex-direction:column;align-items:center;gap:4px}
+.mode .ic{font-size:1.1rem}
+.mode:hover{border-color:rgba(193,53,132,.4);color:#fff}
+.mode.active{background:linear-gradient(135deg,rgba(253,29,29,.2),rgba(131,58,180,.2));border-color:#c13584;color:#fff}
+
+/* BUTTONS */
+.btn{width:100%;padding:15px 20px;border:none;border-radius:14px;font-family:inherit;font-size:.95rem;font-weight:800;cursor:pointer;transition:.2s;letter-spacing:.02em;display:flex;align-items:center;justify-content:center;gap:9px}
 .btn-primary{background:linear-gradient(135deg,#fd1d1d,#833ab4);color:#fff;box-shadow:0 8px 24px rgba(193,53,132,.4)}
 .btn-primary:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 32px rgba(193,53,132,.5)}
 .btn-primary:active{transform:scale(.98)}
 .btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
 /* STATUS */
-.status{padding:14px 16px;border-radius:14px;font-size:.85rem;margin-top:14px;display:none;line-height:1.5;font-weight:600}
+.status{padding:13px 15px;border-radius:13px;font-size:.83rem;margin-top:12px;display:none;line-height:1.5;font-weight:600;word-break:break-word}
 .status.show{display:block;animation:fadeIn .3s}
 @keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .status.info{background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.3);color:#93c5fd}
@@ -42,38 +56,62 @@ body{background:radial-gradient(circle at 20% 10%,rgba(193,53,132,.15),transpare
 .status.success{background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);color:#4ade80}
 
 /* RESULT */
-.result-card{background:linear-gradient(180deg,rgba(24,30,52,.85),rgba(15,20,35,.85));border:1px solid rgba(74,222,128,.3);border-radius:20px;padding:24px 22px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 20px 50px -20px rgba(0,0,0,.7);margin-bottom:20px;display:none;text-align:center}
+.result-card{background:linear-gradient(180deg,rgba(24,30,52,.85),rgba(15,20,35,.85));border:1px solid rgba(74,222,128,.3);border-radius:20px;padding:22px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 20px 50px -20px rgba(0,0,0,.7);margin-bottom:16px;display:none;text-align:center}
 .result-card.show{display:block;animation:fadeIn .3s}
+.result-icon{font-size:2.6rem;margin-bottom:10px;display:block}
+.result-title{font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:6px}
+.result-meta{font-size:.78rem;color:rgba(255,255,255,.5);margin-bottom:16px;font-weight:600}
+.cached-badge{display:inline-block;background:rgba(96,165,250,.2);color:#93c5fd;padding:2px 8px;border-radius:6px;font-size:.65rem;font-weight:800;margin-left:6px}
 
-.result-icon{font-size:3rem;margin-bottom:12px;display:block}
-.result-title{font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:6px}
-.result-meta{font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:20px;font-weight:600}
-
-.dl-btn{width:100%;padding:16px;background:linear-gradient(135deg,#4ade80,#22c55e);color:#0a0e1a;border:none;border-radius:14px;font-family:inherit;font-size:1rem;font-weight:900;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 8px 24px rgba(74,222,128,.4);transition:.2s;letter-spacing:.02em}
+.dl-btn{padding:15px;background:linear-gradient(135deg,#4ade80,#22c55e);color:#0a0e1a;border:none;border-radius:14px;font-family:inherit;font-size:.95rem;font-weight:900;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 8px 24px rgba(74,222,128,.4);transition:.2s;letter-spacing:.02em}
 .dl-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(74,222,128,.5)}
 .dl-btn:active{transform:scale(.98)}
 
-.try-again{margin-top:12px;background:transparent;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.1);padding:12px;width:100%;border-radius:12px;font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer}
-.try-again:hover{color:#fff;border-color:rgba(255,255,255,.2)}
+.action-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.action-btn{padding:11px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.1);border-radius:12px;font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px}
+.action-btn:hover{background:rgba(255,255,255,.1);color:#fff}
+.action-btn.share{color:#c13584;border-color:rgba(193,53,132,.3)}
+.action-btn.share:hover{background:rgba(193,53,132,.15)}
+
+/* BULK RESULTS */
+.bulk-list{margin-top:14px;text-align:left}
+.bulk-item{background:rgba(255,255,255,.03);border-radius:11px;padding:11px 13px;margin-bottom:8px;font-size:.82rem;display:flex;justify-content:space-between;align-items:center;gap:10px;border-left:3px solid #4ade80}
+.bulk-item.fail{border-left-color:#ef4444}
+.bulk-item .info{flex:1;min-width:0}
+.bulk-item .name{font-weight:700;color:#fff;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bulk-item .meta{font-size:.7rem;color:rgba(255,255,255,.5)}
+.bulk-item a{padding:7px 12px;background:linear-gradient(135deg,#4ade80,#22c55e);color:#0a0e1a;text-decoration:none;border-radius:9px;font-weight:800;font-size:.72rem;flex-shrink:0}
+
+/* HISTORY */
+.history-card{background:rgba(20,26,44,.5);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:16px;margin-bottom:16px}
+.history-head{font-size:.68rem;color:rgba(255,255,255,.4);font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.clear-btn{background:none;border:none;color:#c13584;font-size:.68rem;font-weight:800;cursor:pointer;text-transform:uppercase;letter-spacing:.1em}
+.history-list{max-height:200px;overflow-y:auto;margin:-4px}
+.history-item{display:flex;align-items:center;gap:10px;padding:9px 8px;border-radius:10px;cursor:pointer;transition:.15s;font-size:.8rem}
+.history-item:hover{background:rgba(255,255,255,.04)}
+.history-item .ic{font-size:1.1rem;flex-shrink:0}
+.history-item .url{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:rgba(255,255,255,.7);font-weight:600}
+.history-item .mode-tag{font-size:.6rem;background:rgba(193,53,132,.15);color:#c13584;padding:2px 7px;border-radius:6px;font-weight:800;text-transform:uppercase;flex-shrink:0}
 
 /* INFO */
-.info{background:rgba(20,26,44,.5);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:18px;margin-bottom:20px}
-.info h3{font-size:.7rem;color:rgba(255,255,255,.4);font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
+.info{background:rgba(20,26,44,.5);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:16px;margin-bottom:16px}
+.info h3{font-size:.68rem;color:rgba(255,255,255,.4);font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px}
 .info ul{list-style:none}
-.info li{padding:8px 0;font-size:.83rem;color:rgba(255,255,255,.65);display:flex;gap:10px;line-height:1.5}
+.info li{padding:6px 0;font-size:.8rem;color:rgba(255,255,255,.65);display:flex;gap:9px;line-height:1.5}
 .info li::before{content:'✓';color:#4ade80;font-weight:900;flex-shrink:0}
 
 /* SPINNER */
-.spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+.spinner{width:16px;height:16px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* FOOTER */
-.footer{text-align:center;padding:20px;font-size:.7rem;color:rgba(255,255,255,.3);line-height:1.7}
+.footer{text-align:center;padding:16px;font-size:.68rem;color:rgba(255,255,255,.3);line-height:1.7}
 .footer b{color:rgba(255,255,255,.5)}
 
 @media(max-width:400px){
-  .logo h1{font-size:1.35rem}
-  .form-card{padding:20px 18px}
+  .logo h1{font-size:1.3rem}
+  .form-card{padding:18px}
+  .modes{grid-template-columns:repeat(3,1fr)}
 }
 </style>
 </head>
@@ -84,42 +122,89 @@ body{background:radial-gradient(circle at 20% 10%,rgba(193,53,132,.15),transpare
   <div class="logo">
     <div class="logo-mark">📥</div>
     <h1>Insta Saver</h1>
-    <p>Instagram Reels, Video & Photo downloader — Free, Fast, No Login</p>
+    <p>Reels · Video · Audio · Photo downloader — Free & Fast</p>
   </div>
 
-  <div class="form-card">
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab active" id="tabSingle" onclick="switchTab('single')">📥 Single</button>
+    <button class="tab" id="tabBulk" onclick="switchTab('bulk')">📦 Bulk</button>
+  </div>
+
+  <!-- SINGLE FORM -->
+  <div class="form-card" id="singleForm">
     <div class="input-wrap">
       <input type="text" id="urlInput" placeholder="Instagram URL paste karo..." autocomplete="off" autocorrect="off">
+      <button class="paste-btn" onclick="pasteUrl()" title="Paste">📋</button>
     </div>
+
+    <div class="modes">
+      <button class="mode active" data-mode="video" onclick="setMode('video')">
+        <span class="ic">🎬</span><span>Video</span>
+      </button>
+      <button class="mode" data-mode="audio" onclick="setMode('audio')">
+        <span class="ic">🎵</span><span>Audio</span>
+      </button>
+      <button class="mode" data-mode="thumb" onclick="setMode('thumb')">
+        <span class="ic">📸</span><span>Thumb</span>
+      </button>
+    </div>
+
     <button class="btn btn-primary" id="downloadBtn" onclick="startDownload()">
       📥 Download Karo
     </button>
     <div class="status" id="status"></div>
   </div>
 
+  <!-- BULK FORM -->
+  <div class="form-card" id="bulkForm" style="display:none">
+    <div class="input-wrap">
+      <textarea id="bulkInput" rows="5" placeholder="Ek-ek line me multiple URLs paste karo (max 5)..."></textarea>
+    </div>
+    <button class="btn btn-primary" id="bulkBtn" onclick="startBulk()">
+      📦 Bulk Download (Max 5)
+    </button>
+    <div class="status" id="bulkStatus"></div>
+    <div class="bulk-list" id="bulkResults"></div>
+  </div>
+
+  <!-- RESULT -->
   <div class="result-card" id="resultCard">
     <span class="result-icon">✅</span>
-    <div class="result-title">Ready to Download!</div>
-    <div class="result-meta" id="resultMeta">Video ready hai</div>
+    <div class="result-title">Ready to Download! <span id="cachedBadge"></span></div>
+    <div class="result-meta" id="resultMeta">—</div>
     <a class="dl-btn" id="downloadLink" href="#" download>
       ⬇️ Save to Phone
     </a>
-    <button class="try-again" onclick="resetForm()">🔄 Naya Download</button>
+    <div class="action-row">
+      <button class="action-btn" onclick="resetForm()">🔄 New</button>
+      <button class="action-btn share" onclick="shareLink()">🔗 Share</button>
+    </div>
   </div>
 
+  <!-- HISTORY -->
+  <div class="history-card" id="historyCard" style="display:none">
+    <div class="history-head">
+      <span>📜 Recent Downloads</span>
+      <button class="clear-btn" onclick="clearHistory()">Clear</button>
+    </div>
+    <div class="history-list" id="historyList"></div>
+  </div>
+
+  <!-- INFO -->
   <div class="info">
     <h3>How to use</h3>
     <ul>
       <li>Instagram app kholo → Reel/Post pe jao</li>
       <li>Three dots (⋮) → "Copy Link" dabाओ</li>
-      <li>Yahan paste karke "Download" dabाओ</li>
-      <li>File save hogi → Gallery me dekho</li>
+      <li>Yahan paste karke mode select karo</li>
+      <li>Download dabाओ → Gallery me save karo</li>
     </ul>
   </div>
 
   <div class="footer">
-    <b>Disclaimer:</b> Sirf publicly available content download karo.<br>
-    Copyright content download karna illegal ho sakta hai. Apni responsibility pe use karo.
+    <b>Disclaimer:</b> Sirf public content download karo.<br>
+    Copyright content ke liye hum responsible nahi hain.
   </div>
 
 </div>
@@ -130,15 +215,52 @@ const downloadBtn = document.getElementById('downloadBtn');
 const status = document.getElementById('status');
 const resultCard = document.getElementById('resultCard');
 
-function showStatus(type, msg){
-  status.className = 'status show ' + type;
-  status.innerHTML = msg;
-}
+let currentMode = 'video';
+let currentFile = null;
+let history = JSON.parse(localStorage.getItem('insta_history') || '[]');
 
-function hideStatus(){
+// ============ TABS ============
+function switchTab(name){
+  document.getElementById('tabSingle').classList.toggle('active', name === 'single');
+  document.getElementById('tabBulk').classList.toggle('active', name === 'bulk');
+  document.getElementById('singleForm').style.display = name === 'single' ? 'block' : 'none';
+  document.getElementById('bulkForm').style.display = name === 'bulk' ? 'block' : 'none';
+  resultCard.classList.remove('show');
   status.className = 'status';
 }
 
+// ============ MODE ============
+function setMode(mode){
+  currentMode = mode;
+  document.querySelectorAll('.mode').forEach(m => {
+    m.classList.toggle('active', m.dataset.mode === mode);
+  });
+}
+
+// ============ PASTE ============
+async function pasteUrl(){
+  try {
+    const text = await navigator.clipboard.readText();
+    urlInput.value = text.trim();
+    showStatus('info', '📋 Clipboard se paste ho gaya');
+    setTimeout(() => status.className = 'status', 1500);
+  } catch(e){
+    showStatus('error', 'Clipboard access deny — manually paste karo');
+  }
+}
+
+// ============ STATUS ============
+function showStatus(type, msg, target){
+  const el = target || status;
+  el.className = 'status show ' + type;
+  el.innerHTML = msg;
+}
+
+function hideStatus(target){
+  (target || status).className = 'status';
+}
+
+// ============ SINGLE DOWNLOAD ============
 async function startDownload(){
   const url = urlInput.value.trim();
   
@@ -153,26 +275,37 @@ async function startDownload(){
   }
   
   downloadBtn.disabled = true;
-  downloadBtn.innerHTML = '<div class="spinner"></div> Download ho raha...';
-  showStatus('info', '⏳ Video process ho rahi hai... (10-30 sec)');
+  downloadBtn.innerHTML = '<div class="spinner"></div> Process ho raha...';
+  showStatus('info', '⏳ ' + currentMode.toUpperCase() + ' download ho raha hai... (10-30 sec)');
   resultCard.classList.remove('show');
   
   try {
     const res = await fetch('/api/download', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({url})
+      body: JSON.stringify({url, mode: currentMode})
     });
     
     const data = await res.json();
     
     if(data.ok){
-      showStatus('success', '✅ Video ready! Download button dabाओ');
-      document.getElementById('resultMeta').textContent = 'Size: ' + data.size;
-      document.getElementById('downloadLink').href = data.file;
-      document.getElementById('downloadLink').setAttribute('download', data.filename);
+      showStatus('success', '✅ Ready! Download button dabाओ');
+      document.getElementById('resultMeta').textContent = 
+        'Size: ' + data.size + ' · Format: ' + currentMode.toUpperCase();
+      
+      const cachedBadge = document.getElementById('cachedBadge');
+      cachedBadge.innerHTML = data.cached ? '<span class="cached-badge">⚡ Cached</span>' : '';
+      
+      const dl = document.getElementById('downloadLink');
+      dl.href = data.file;
+      dl.setAttribute('download', data.filename);
+      
+      currentFile = {url, file: data.file, filename: data.filename, size: data.size, mode: currentMode};
+      
       resultCard.classList.add('show');
       resultCard.scrollIntoView({behavior:'smooth', block:'center'});
+      
+      addToHistory(currentFile);
     } else {
       showStatus('error', '❌ ' + (data.error || 'Download failed'));
     }
@@ -184,17 +317,158 @@ async function startDownload(){
   downloadBtn.innerHTML = '📥 Download Karo';
 }
 
+// ============ BULK ============
+async function startBulk(){
+  const text = document.getElementById('bulkInput').value.trim();
+  const bulkBtn = document.getElementById('bulkBtn');
+  const bulkStatus = document.getElementById('bulkStatus');
+  const bulkResults = document.getElementById('bulkResults');
+  
+  const urls = text.split('\n').map(u => u.trim()).filter(u => u);
+  
+  if(urls.length === 0){
+    showStatus('error', 'Koi URL daalo', bulkStatus);
+    return;
+  }
+  
+  if(urls.length > 5){
+    showStatus('error', 'Max 5 URLs ek baar me', bulkStatus);
+    return;
+  }
+  
+  bulkBtn.disabled = true;
+  bulkBtn.innerHTML = '<div class="spinner"></div> Processing ' + urls.length + ' URLs...';
+  showStatus('info', '⏳ ' + urls.length + ' videos process ho rahi hain... (2-5 min)', bulkStatus);
+  bulkResults.innerHTML = '';
+  
+  try {
+    const res = await fetch('/api/bulk', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({urls})
+    });
+    
+    const data = await res.json();
+    
+    if(data.ok){
+      showStatus('success', '✅ ' + data.results.length + ' results', bulkStatus);
+      
+      bulkResults.innerHTML = data.results.map(r => {
+        if(r.ok){
+          addToHistory({url: r.url, file: r.file, filename: r.filename, size: r.size, mode: 'video'});
+          return `
+            <div class="bulk-item">
+              <div class="info">
+                <div class="name">${r.filename}</div>
+                <div class="meta">${r.size}</div>
+              </div>
+              <a href="${r.file}" download="${r.filename}">⬇ Save</a>
+            </div>
+          `;
+        } else {
+          return `
+            <div class="bulk-item fail">
+              <div class="info">
+                <div class="name">Failed</div>
+                <div class="meta">${r.error || 'Unknown error'}</div>
+              </div>
+            </div>
+          `;
+        }
+      }).join('');
+    } else {
+      showStatus('error', '❌ ' + (data.error || 'Bulk failed'), bulkStatus);
+    }
+  } catch(e){
+    showStatus('error', '❌ ' + e.message, bulkStatus);
+  }
+  
+  bulkBtn.disabled = false;
+  bulkBtn.innerHTML = '📦 Bulk Download (Max 5)';
+}
+
+// ============ RESET ============
 function resetForm(){
   urlInput.value = '';
+  document.getElementById('bulkInput').value = '';
   resultCard.classList.remove('show');
+  document.getElementById('bulkResults').innerHTML = '';
   hideStatus();
+  hideStatus(document.getElementById('bulkStatus'));
   urlInput.focus();
 }
 
-// Enter key support
+// ============ SHARE ============
+async function shareLink(){
+  if(!currentFile) return;
+  const shareUrl = 'https://' + window.location.host + currentFile.file;
+  const shareData = {
+    title: 'Instagram Download',
+    text: 'Ye lo downloaded video',
+    url: shareUrl
+  };
+  
+  try {
+    if(navigator.share){
+      await navigator.share(shareData);
+    } else {
+      await navigator.clipboard.writeText(shareUrl);
+      showStatus('info', '🔗 Link clipboard me copy ho gaya');
+    }
+  } catch(e){}
+}
+
+// ============ HISTORY ============
+function addToHistory(item){
+  history = history.filter(h => h.url !== item.url);
+  history.unshift(item);
+  if(history.length > 10) history = history.slice(0, 10);
+  localStorage.setItem('insta_history', JSON.stringify(history));
+  renderHistory();
+}
+
+function renderHistory(){
+  const card = document.getElementById('historyCard');
+  const list = document.getElementById('historyList');
+  
+  if(history.length === 0){
+    card.style.display = 'none';
+    return;
+  }
+  
+  card.style.display = 'block';
+  list.innerHTML = history.map(h => {
+    const emoji = h.mode === 'audio' ? '🎵' : h.mode === 'thumb' ? '📸' : '🎬';
+    return `
+      <div class="history-item" onclick="loadFromHistory('${h.url}')">
+        <span class="ic">${emoji}</span>
+        <span class="url">${h.url.substring(0, 40)}...</span>
+        <span class="mode-tag">${h.mode}</span>
+      </div>
+    `;
+  }).join('');
+}
+
+function loadFromHistory(url){
+  urlInput.value = url;
+  switchTab('single');
+  urlInput.focus();
+}
+
+function clearHistory(){
+  if(!confirm('History clear karni hai?')) return;
+  history = [];
+  localStorage.removeItem('insta_history');
+  renderHistory();
+}
+
+// ============ ENTER KEY ============
 urlInput.addEventListener('keypress', (e) => {
   if(e.key === 'Enter') startDownload();
 });
+
+// ============ BOOT ============
+renderHistory();
 </script>
 </body>
 </html>
