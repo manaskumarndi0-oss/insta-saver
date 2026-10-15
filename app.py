@@ -241,3 +241,7 @@ def icon512():
 @app.route('/static/<path:filename>')
 def static_files(filename):
     return send_from_directory(os.path.join(BASE, 'static'), filename)
+
+@app.route('/privacy')
+def privacy():
+    return render_template('privacy.html')
